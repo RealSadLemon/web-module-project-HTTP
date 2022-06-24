@@ -4,7 +4,7 @@ import { Link, useParams, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 const Movie = (props) => {
-    const { addToFavorites } = props;
+    const { addToFavorites, handleDelete } = props;
 
     const [movie, setMovie] = useState('');
 
@@ -50,9 +50,9 @@ const Movie = (props) => {
                         </section>
                         
                         <section>
-                            <span className="m-2 btn btn-dark">Favorite</span>
+                            <span className="m-2 btn btn-dark" onClick={() => {addToFavorites(movie);}}>Favorite</span>
                             <Link to={`/movies/edit/${movie.id}`} className="m-2 btn btn-success">Edit</Link>
-                            <span className="delete"><input type="button" className="m-2 btn btn-danger" value="Delete"/></span>
+                            <span className="delete"><input type="button" className="m-2 btn btn-danger" value="Delete" onClick={() => handleDelete(id)}/></span>
                         </section>
                     </div>
                 </div>

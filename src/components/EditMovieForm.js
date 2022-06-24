@@ -6,7 +6,6 @@ import axios from 'axios';
 
 const EditMovieForm = (props) => {
 	const { push } = useHistory();
-
 	const { setMovies } = props;
 	const [movie, setMovie] = useState({
 		title:"",
@@ -15,6 +14,17 @@ const EditMovieForm = (props) => {
 		metascore: 0,
 		description: ""
 	});
+	const {id} = useParams();
+
+	useEffect(() => {
+		axios.get(`http://localhost:9000/api/movies/${id}`)
+			.then(res => {
+				setMovie(res.data);
+			})
+			.catch(err => {
+				console.log(err, id);
+			})
+	}, [])
 	
 	const handleChange = (e) => {
         setMovie({
